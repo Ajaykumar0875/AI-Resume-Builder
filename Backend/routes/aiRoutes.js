@@ -1,0 +1,18 @@
+import express from 'express';
+import protect from '../middlewares/authMiddleware.js';
+import { enhanceJobDescription, enhanceProfessionalSummary, enhanceProjectDescription, uploadResume } from '../controllers/aiController.js';
+// import { updateResume } from '../controllers/resumeController.js';
+import multer from 'multer';
+
+
+const aiRouter = express.Router();
+const upload = multer();
+
+
+aiRouter.post('/enhance-pro-sum', protect, enhanceProfessionalSummary);
+aiRouter.post('/enhance-job-desc', protect, enhanceJobDescription);
+aiRouter.post('/enhance-project-desc', protect, enhanceProjectDescription);
+aiRouter.post('/upload-resume', upload.single("resume"), protect, uploadResume);
+
+
+export default aiRouter;
