@@ -14,6 +14,8 @@ export const enhanceProfessionalSummary = async(req,res) =>{
 
     try{
         const { userContent } =  req.body;
+        console.log("AI Request - Model:", process.env.OPENAI_MODEL);
+        console.log("AI Request - Content:", userContent);
 
         if(!userContent){
             return res.status(400).json({error: "Missing required fields"});
@@ -37,6 +39,7 @@ export const enhanceProfessionalSummary = async(req,res) =>{
 
 
     catch(error){
+            console.error("AI Enhance Error:", error);
             return res.status(400).json({message: error.message});
 
     }
@@ -76,6 +79,7 @@ export const enhanceJobDescription = async(req,res) =>{
 
 
     catch(error){
+            console.error("AI Enhance Job Desc Error:", error);
             return res.status(400).json({message: error.message});
 
     }
@@ -115,6 +119,7 @@ export const enhanceProjectDescription = async(req,res) =>{
 
 
     catch(error){
+            console.error("AI Enhance Project Desc Error:", error);
             return res.status(400).json({message: error.message});
 
     }
